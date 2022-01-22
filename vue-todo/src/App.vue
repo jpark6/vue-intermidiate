@@ -27,21 +27,21 @@ export default defineComponent({
 body {
   text-align: center;
   background-color: #F6F6F6;
-  #app {
-    font-family: "Ubuntu, Helvetica, Consolas";
+}
+#app {
+  font-family: "Ubuntu, Helvetica, Consolas";
+}
+input {
+  border-style: groove;
+  width: 200px;
+}
 
-    input {
-      border-style: groove;
-      width: 200px;
-    }
+button {
+  border-style: groove;
+  cursor: pointer;
+}
 
-    button {
-      border-style: groove;
-    }
-
-    .shadow {
-      box-shadow: 5px 10px 10px rgba(0, 0, 0, .03);
-    }
-  }
+.shadow {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, .03);
 }
 </style>
