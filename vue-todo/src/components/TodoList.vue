@@ -3,7 +3,7 @@
     <ul>
       <li
         class="shadow"
-        v-for="( todoItem, index ) in todoItems"
+        v-for="( todoItem, index ) in propsdata"
         v-bind:key="todoItem"
       >
         <button
@@ -24,32 +24,13 @@
 
 <script lang="ts">
 export default {
-  data(): { todoItems: {item: string, completed: boolean }[] } {
-    return {
-      todoItems: [],
-    };
-  },
-  created(): void {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i += 1) {
-        const key = localStorage.key(i);
-        const obj = localStorage.getItem(key || '');
-        if (obj && typeof obj === 'string' && key !== 'loglevel:webpack-dev-server') {
-          const item: { item: string, completed: boolean } = JSON.parse(obj);
-          this.todoItems.push(item);
-        }
-      }
-    }
-  },
+  props: ['propsdata'],
   methods: {
-    removeTodo(todoItem: string, index: number) : void {
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+    removeTodo(todoItem: { item: string, completed: boolean}, index: number) : void {
+      this.$emit('removeTodoItem', todoItem, index);
     },
     toggleComplete(todoItem: { item: string, completed: boolean}, index: number) : void {
-      this.todoItems[index].completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(this.todoItems[index]));
+      this.$emit('toggleTodoItem', todoItem, index);
     },
   },
 };

@@ -8,14 +8,16 @@
 </template>
 
 <script lang="ts">
+interface dataProps {
+  newTodoItem: string
+}
 export default {
-  data: (): {newTodoItem: string} => ({
+  data: (): dataProps => ({
     newTodoItem: '',
   }),
   methods: {
     addTodo(): void {
-      const obj = { completed: false, item: this.newTodoItem };
-      localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+      this.$emit('addTodoItem', this.newTodoItem);
       this.clearInput();
     },
     clearInput(): void {
