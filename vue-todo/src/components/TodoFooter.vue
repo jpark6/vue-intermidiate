@@ -11,7 +11,7 @@
 export default {
   methods: {
     clearTodo(): void {
-      localStorage.clear();
+      this.$emit('clearAllTodoItem');
     },
   },
 };
