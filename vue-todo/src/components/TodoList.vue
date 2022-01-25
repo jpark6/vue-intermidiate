@@ -23,17 +23,19 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   props: ['propsdata'],
   methods: {
     removeTodo(todoItem: { item: string, completed: boolean}, index: number) : void {
-      this.$emit('removeTodoItem', todoItem, index);
+      return this.$emit('removeTodoItem', todoItem, index);
     },
     toggleComplete(todoItem: { item: string, completed: boolean}, index: number) : void {
       this.$emit('toggleTodoItem', todoItem, index);
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

@@ -8,10 +8,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
+
 interface dataProps {
   newTodoItem: string
 }
-export default {
+export default defineComponent({
   data: (): dataProps => ({
     newTodoItem: '',
   }),
@@ -24,7 +26,7 @@ export default {
       this.newTodoItem = '';
     },
   },
-};
+});
 </script>
 
 <style scpoed lang="scss">

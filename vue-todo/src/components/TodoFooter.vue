@@ -8,13 +8,15 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   methods: {
-    clearTodo(): void {
+    clearTodo() : void {
       this.$emit('clearAllTodoItem');
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">
