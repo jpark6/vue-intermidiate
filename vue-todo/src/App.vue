@@ -29,8 +29,10 @@ export default defineComponent({
   methods: {
     addOneItem(newTodoItem: string): void {
       const obj = { completed: false, item: newTodoItem };
-      localStorage.setItem(newTodoItem, JSON.stringify(obj));
-      this.todoItems.push(obj);
+      if (!localStorage.getItem(newTodoItem)) {
+        localStorage.setItem(newTodoItem, JSON.stringify(obj));
+        this.todoItems.push(obj);
+      }
     },
     removeOneItem(todoItem: { item: string, completed: boolean}, index: number) {
       console.log(todoItem);
