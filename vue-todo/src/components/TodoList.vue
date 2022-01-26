@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li
         class="shadow"
         v-for="( todoItem, index ) in propsdata"
@@ -18,7 +18,7 @@
           <i class="fas fa-trash-alt"></i>
         </button>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -78,4 +78,23 @@ ul {
   }
 }
 
+/* List Item Transition Effect*/
+.list-item {
+  // display: inline-block;
+  margin-right: 10px;
+}
+
+.list-enter-active, .list-leave-active {
+  transition: all .5s;
+}
+
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>
