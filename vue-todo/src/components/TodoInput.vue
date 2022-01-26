@@ -4,27 +4,55 @@
     <button class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn" />
     </button>
+    <!-- use the modal component, pass in the prop -->
+    <transition name="modal">
+    <Modal v-show="showModal" @close="showModal = false">
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <template v-slot:header>
+        <h3>Warning!</h3>
+        <button class="closeModalBtn" @click="showModal = false;">
+          <i class="fas fa-times"></i>
+        </button>
+      </template>
+      <template v-slot:body>
+        Type Todo Title!!
+      </template>
+    </Modal>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Modal from './common/Modal.vue';
 
 interface dataProps {
-  newTodoItem: string
+  newTodoItem: string,
+  showModal: boolean,
 }
 export default defineComponent({
   data: (): dataProps => ({
     newTodoItem: '',
+    showModal: false,
   }),
   methods: {
     addTodo(): void {
-      this.$emit('addTodoItem', this.newTodoItem);
-      this.clearInput();
+      if (this.newTodoItem !== '') {
+        this.$emit('addTodoItem', this.newTodoItem);
+        this.clearInput();
+      } else {
+        this.showModal = true;
+      }
     },
     clearInput(): void {
       this.newTodoItem = '';
     },
+  },
+  components: {
+    Modal,
   },
 });
 </script>
@@ -66,6 +94,16 @@ export default defineComponent({
 .addBtn {
   color: white;
   // vertical-align: middle;
+}
+
+.closeModalBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #42B983;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 </style>
