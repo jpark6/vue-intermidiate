@@ -34,12 +34,12 @@ export default defineComponent({
         this.todoItems.push(obj);
       }
     },
-    removeOneItem(todoItem: { item: string, completed: boolean}, index: number) {
+    removeOneItem(todoItem: { item: string, completed: boolean }, index: number) {
       console.log(todoItem);
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
     },
-    toggleOneItem(todoItem: { item: string, completed: boolean}, index: number) {
+    toggleOneItem(todoItem: { item: string, completed: boolean }, index: number) {
       this.todoItems[index].completed = !todoItem.completed;
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(this.todoItems[index]));

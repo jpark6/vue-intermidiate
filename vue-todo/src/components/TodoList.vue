@@ -26,12 +26,12 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  props: ['propsdata'],
+  props: [ 'propsdata' ],
   methods: {
-    removeTodo(todoItem: { item: string, completed: boolean}, index: number) : void {
+    removeTodo(todoItem: { item: string, completed: boolean }, index: number) : void {
       return this.$emit('removeTodoItem', todoItem, index);
     },
-    toggleComplete(todoItem: { item: string, completed: boolean}, index: number) : void {
+    toggleComplete(todoItem: { item: string, completed: boolean }, index: number) : void {
       this.$emit('toggleTodoItem', todoItem, index);
     },
   },
